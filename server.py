@@ -1,14 +1,14 @@
 import socket
 import ssl
 import threading
+from host import port, pipe_port
 
-PUBLIC_WEB_PORT = 8443   
-DESKTOP_PIPE_PORT = 9000  
+PUBLIC_WEB_PORT = port   
+DESKTOP_PIPE_PORT = pipe_port  
 
 client_tunnel_sock = None  
 
 def forward_stream(source, destination):
-    """Pipes data from source socket to destination socket."""
     try:
         while True:
             data = source.recv(4096)
@@ -22,7 +22,6 @@ def forward_stream(source, destination):
         destination.close()
 
 def handle_public_request(public_ssl_sock):
-    """Takes public HTTPS requests and forwards them down the desktop pipe."""
     global client_tunnel_sock
     if client_tunnel_sock is None:
         print("[-] Error: Desktop client is not connected yet. Cannot forward traffic.")
@@ -37,7 +36,6 @@ def handle_public_request(public_ssl_sock):
     t2.start()
 
 def accept_desktop_client():
-    """Listens for your desktop client to connect and establish the tunnel pipe."""
     global client_tunnel_sock
     control_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     control_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

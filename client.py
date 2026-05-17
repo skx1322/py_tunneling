@@ -1,9 +1,9 @@
 import socket
 import threading
-from host import server_ip
+from host import server_ip, pipe_port, local_port
 CLOUD_IP =  server_ip
-CLOUD_PIPE_PORT = 9000             
-LOCAL_API_PORT = 8080           
+CLOUD_PIPE_PORT = pipe_port             
+LOCAL_API_PORT = local_port           
 
 def forward_stream(source, destination):
     try:
