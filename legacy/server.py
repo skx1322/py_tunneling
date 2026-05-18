@@ -1,7 +1,7 @@
 import socket
 import ssl
 import threading
-from host import port, pipe_port
+from py_tunneling.legacy.host import port, pipe_port
 
 PUBLIC_WEB_PORT = port   
 DESKTOP_PIPE_PORT = pipe_port  

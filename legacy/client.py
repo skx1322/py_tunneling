@@ -1,6 +1,6 @@
 import socket
 import threading
-from host import server_ip, pipe_port, local_port
+from py_tunneling.legacy.host import server_ip, pipe_port, local_port
 CLOUD_IP =  server_ip
 CLOUD_PIPE_PORT = pipe_port             
 LOCAL_API_PORT = local_port           
